@@ -18,13 +18,18 @@ import {
   Paper,
 } from "@mui/material";
 import React from "react";
-
+import { useNavigate } from "react-router-dom";
 const SolidDvider = styled(Divider)(({ theme }) => ({
   borderColor: "#bcbcce",
   borderBottomWidth: "2px",
 }));
 
 function UserMenu() {
+  const navigate = useNavigate();
+  const signoutHandler = () => {
+    localStorage.removeItem("token");
+    navigate("/");
+  };
   return (
     <Paper
       sx={{
@@ -80,7 +85,7 @@ function UserMenu() {
           <ListItemText>Support</ListItemText>
         </MenuItem>
         <SolidDvider />
-        <MenuItem>
+        <MenuItem onClick={signoutHandler}>
           <ListItemIcon>
             <LogoutOutlined />
           </ListItemIcon>

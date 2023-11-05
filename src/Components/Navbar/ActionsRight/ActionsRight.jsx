@@ -21,7 +21,7 @@ import UserMenu from "./UserMenu";
 import CartModal from "../../CartModal/CartModal";
 import NotificationsMenu from "../../NotificationsMenu/NotificationsMenu";
 
-function ActionsRight() {
+function ActionsRight({ cartVisible }) {
   const themeMode = useSelector((state) => state.ui.themeMode);
 
   const dispatch = useDispatch();
@@ -74,6 +74,7 @@ function ActionsRight() {
         <IconButton
           aria-label="shopping cart"
           onClick={() => setCartIsShown(true)}
+          sx={{ display: cartVisible ? "block" : "none" }}
         >
           <Badge badgeContent={itemsCount} color="primary">
             <ShoppingCartOutlined

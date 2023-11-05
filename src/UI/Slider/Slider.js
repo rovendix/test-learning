@@ -45,7 +45,7 @@ function Slider({
     }
   }, [currentSlide]);
   return (
-    <Box height={height} width={width} position="relative">
+    <Box height={height} width={width} overflow="hidden" position="relative">
       {showArrows && (
         <>
           <IconButton
@@ -143,28 +143,25 @@ function Slider({
           </Box>
         </>
       )}
-
-      <Box width="100%" height="100%" overflow="hidden" position="relative">
-        <Box
-          width="fit-content"
-          display="flex"
-          height="100%"
-          position="absolute"
-          left={`calc(${-currentSlide} * ${itemWidth})`}
-          sx={{
-            transition: `all ${transitionTime || "0.5s"} ease`,
-            width: maxWidth,
-          }}
-        >
-          {items.map((item, index) => (
-            <SliderItem
-              img={item.img}
-              height={"100%"}
-              width={itemWidth}
-              key={index}
-            />
-          ))}
-        </Box>
+      <Box
+        width={maxWidth}
+        display="flex"
+        height="100%"
+        position="absolute"
+        left={`calc(${-currentSlide} * ${itemWidth})`}
+        sx={{
+          transition: `all ${transitionTime || "0.5s"} ease`,
+          width: maxWidth,
+        }}
+      >
+        {items.map((item, index) => (
+          <SliderItem
+            img={item.img}
+            height={"100%"}
+            width={itemWidth}
+            key={index}
+          />
+        ))}
       </Box>
     </Box>
   );

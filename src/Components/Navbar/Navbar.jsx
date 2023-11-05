@@ -37,7 +37,7 @@ export default function Navbar() {
         </Typography>
       </Box>
       <SearchBar />
-      <ActionsRight />
+      <ActionsRight cartVisible={true} />
     </AppBar>
   );
 }
