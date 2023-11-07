@@ -1,10 +1,10 @@
 import React, { Suspense } from "react";
 import { Helmet } from "react-helmet";
-import IndicationCard from "../../../Components/Student/IndicationCard/IndicationCard";
+import IndicationCard from "../../../Components/Instructor/IndicationCard/IndicationCard";
 import { AttachMoney, Groups, QueryBuilder } from "@mui/icons-material";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
-import WelcomeCard from "../../../Components/Student/WelcomeCard/WelcomeCard";
-import NewsCarousel from "../../../Components/Student/NewsCarousel/NewsCarousel";
+import WelcomeCard from "../../../Components/Instructor/WelcomeCard/WelcomeCard";
+import NewsCarousel from "../../../Components/Instructor/NewsCarousel/NewsCarousel";
 function Dashboard() {
   const sliderItems = [
     {
@@ -27,7 +27,7 @@ function Dashboard() {
     },
   ];
   return (
-    <Suspense>
+    <>
       <Helmet>
         <title>Dashboard</title>
       </Helmet>
@@ -60,7 +60,7 @@ function Dashboard() {
           />
         </Grid2>
       </Grid2>
-    </Suspense>
+    </>
   );
 }
 

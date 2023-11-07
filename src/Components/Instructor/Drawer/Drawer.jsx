@@ -193,6 +193,22 @@ function MiniDrawer(props, ref) {
           ))}
         </List>
       </Drawer>
+      {open && (
+        <Box
+          sx={{
+            position: "fixed",
+            left: 0,
+            top: 0,
+            height: "100vh",
+            width: "100vw",
+            backgroundColor: "rgba(0,0,0,0.5)",
+            backdropFilter: "blur(1px)",
+            zIndex: 150,
+            display: { xs: "block", lg: "none" },
+          }}
+          onClick={toggleOpenDrawer}
+        ></Box>
+      )}
     </Box>
   );
 }

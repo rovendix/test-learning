@@ -17,7 +17,7 @@ export const theme = (mode) =>
               main: "#007D53",
               light: "#007E92",
               dark: "#09a16b",
-              border: "#bcbcce",
+              border: "rgb(241, 243, 244)",
               svg: "#000",
               scrollbar: "#c4c4c4",
             },
@@ -31,7 +31,7 @@ export const theme = (mode) =>
             },
             primary: {
               main: "#1BB385",
-              border: "#bcbcce",
+              border: "rgb(46, 50, 54)",
               light: "#189AB4",
               dark: "#009766",
               scrollbar: "#626585",

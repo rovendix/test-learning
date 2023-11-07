@@ -1,7 +1,6 @@
 import React, { useRef } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import { Box, IconButton, Typography } from "@mui/material";
 import styled from "@emotion/styled";
 import {
@@ -94,6 +93,9 @@ function NewsCarousel({ items, height }) {
           right: "1em",
           top: "1em",
           zIndex: 3,
+          height: "30px",
+          display: "flex",
+          alignItems: "center",
         }}
       >
         <IconButton onClick={() => slider.current?.slickPrev()} sx={{ p: 0 }}>
@@ -103,7 +105,16 @@ function NewsCarousel({ items, height }) {
           <ChevronRight sx={{ color: "grey.300" }} />
         </IconButton>
       </Box>
-      <Box sx={{ position: "absolute", left: "1em", top: "1em" }}>
+      <Box
+        sx={{
+          position: "absolute",
+          left: "1em",
+          top: "1em",
+          height: "30px",
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
         {items.map((_, index) => (
           <Box
             key={index}

@@ -1,17 +1,13 @@
-import { Suspense, lazy } from "react";
 import Layout from "../pages/Layout/Layout";
 import Home from "../pages/Home/Home.jsx";
 import { createBrowserRouter } from "react-router-dom";
 import Signin from "../pages/Signin/Signin";
 import Signup from "../pages/Signup/Signup";
 import ForgetPassword from "../pages/ForgetPassword/ForgetPassword";
-const InstructorLayout = lazy(() => import("../pages/Instructor/Layout.jsx"));
-const InstructorDashboard = lazy(() =>
-  import("../pages/Instructor/Dashboard/Dashboard.jsx")
-);
-const InstructorCourses = lazy(() =>
-  import("../pages/Instructor/Courses/Courses.jsx")
-);
+import InstructorLayout from "../pages/Instructor/Layout.jsx";
+import InstructorDashboard from "../pages/Instructor/Dashboard/Dashboard.jsx";
+import InstructorCourses from "../pages/Instructor/Courses/Courses.jsx";
+import NewCourse from "../pages/Instructor/Courses/NewCourse/NewCourse.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -36,7 +32,12 @@ const router = createBrowserRouter([
       },
       {
         path: "courses",
+        index: true,
         element: <InstructorCourses />,
+      },
+      {
+        path: "courses/new",
+        element: <NewCourse />,
       },
     ],
   },
