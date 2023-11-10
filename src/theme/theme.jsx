@@ -42,6 +42,17 @@ export const theme = (mode) =>
           }),
     },
     components: {
+      MuiLink: {
+        styleOverrides: {
+          root: {
+            color: mode === "light" ? "#007d53" : "#1bb385",
+            textDecoration: "none",
+            "&:hover": {
+              color: mode === "light" ? "#09a16b" : "#009766",
+            },
+          },
+        },
+      },
       MuiButton: {
         variants: [
           {

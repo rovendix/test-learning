@@ -87,16 +87,14 @@ const Wrapper = styled(Box)(({ theme }) => ({
       color: theme.palette.primary.main,
     },
 }));
-function TextEditor({ sx }) {
-  const [value, setValue] = useState("");
-  console.log(value);
+function TextEditor({ sx, value, onChange }) {
   return (
     <Wrapper sx={sx}>
       <ReactQuill
         value={value}
         modules={modules}
         formats={formats}
-        onChange={setValue}
+        onChange={onChange}
       />
     </Wrapper>
   );

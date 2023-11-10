@@ -32,8 +32,9 @@ const MoreButton = () => {
         aria-haspopup="true"
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
+        sx={{ p: "4px" }}
       >
-        <MoreVert />
+        <MoreVert sx={{ fontWeight: "16px" }} />
       </IconButton>
       <Menu
         id="basic-menu"
