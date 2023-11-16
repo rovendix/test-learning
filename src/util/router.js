@@ -8,8 +8,9 @@ import InstructorLayout from "../pages/Instructor/Layout.jsx";
 import InstructorDashboard from "../pages/Instructor/Dashboard/Dashboard.jsx";
 import InstructorCourses from "../pages/Instructor/Courses/Courses.jsx";
 import EditCourseInfo from "../pages/Instructor/Courses/EditCourseInfo/EditCourseInfo.jsx";
-import CourseContent from "../pages/Instructor/Courses/CourseContent/CourseContent.jsx";
-import ChapterContent from "../pages/Instructor/Courses/Chapters/ChapterContent/ChapterContent.jsx";
+import InstructorChapters from "../pages/Instructor/Courses/Chapters/Chapters.jsx";
+import InstructorTopics from "../pages/Instructor/Courses/Chapters/Topics/Topics.jsx";
+import Topic from "../pages/Instructor/Courses/Chapters/Topics/Topic";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -41,7 +42,7 @@ const router = createBrowserRouter([
         children: [
           {
             index: true,
-            element: <CourseContent />,
+            element: <InstructorChapters />,
           },
           {
             path: "edit",
@@ -54,7 +55,16 @@ const router = createBrowserRouter([
         children: [
           {
             index: true,
-            element: <ChapterContent />,
+            element: <InstructorTopics />,
+          },
+        ],
+      },
+      {
+        path: "courses/:courseId/:chapterId/:topicId",
+        children: [
+          {
+            index: true,
+            element: <Topic />,
           },
         ],
       },

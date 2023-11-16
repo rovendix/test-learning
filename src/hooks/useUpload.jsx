@@ -5,19 +5,20 @@ export default function useUpload(file) {
   const [url, setUrl] = useState(null);
   const [progress, setProgress] = useState(null);
   const [error, setError] = useState(null);
+  const [abort, setAbort] = useState(null);
   useEffect(() => {
     if (file) {
+      console.log(file);
       async function getData() {
-        console.log({
-          fileName: file.name.split(".")[0],
-          fileType: file.name.split(".").pop(),
-        });
+        const fileType = file.name.match(/\.[^/.]+$/)[0].replace(".", "");
+        const fileName = file.name.replace(/\.[^/.]+$/, "");
+        setProgress(0);
         const target = await axios
           .post(
-            "https://e-learninggraduationproject.azurewebsites.net/upload",
+            "https://e-learnig-graduation-project.azurewebsites.net/upload",
             {
-              fileName: file.name.split(".")[0],
-              fileType: file.name.split(".").pop(),
+              fileName,
+              fileType,
             },
             {
               headers: {
@@ -30,8 +31,12 @@ export default function useUpload(file) {
             return;
           });
         const ParsedFile = await convertFileToArrayBuffer(file);
+
+        const controller = new AbortController();
+        setAbort(controller);
         await axios
           .put(target.data.accountSasTokenUrl, ParsedFile, {
+            signal: controller.signal,
             headers: {
               "Content-Type": "application/octet-stream",
               "x-ms-blob-type": "BlockBlob",
@@ -42,16 +47,18 @@ export default function useUpload(file) {
               setProgress(percent);
             },
           })
+          .then((res) => {
+            setUrl(target.data.fileUrl);
+          })
           .catch((err) => {
             setError(err);
             return;
           });
-        setUrl(target.data.fileUrl);
       }
       getData();
     }
   }, [file]);
-  return { url, progress, error };
+  return { url, progress, error, abort };
 }
 
 const convertStringToArrayBuffer = (str) => {

@@ -17,7 +17,7 @@ import {
 } from "@mui/material";
 import LoadingButton from "@mui/lab/LoadingButton";
 import { Google } from "@mui/icons-material";
-import { siteUrl } from "../../../util/backend";
+import { BaseApi } from "../../../util/BaseApi";
 
 export default function SigninForm() {
   let nav = useNavigate();
@@ -34,7 +34,7 @@ export default function SigninForm() {
   const handleSignin = async (values) => {
     setLoading(true);
     const response = await axios
-      .post(`${siteUrl}/auth/LogIn`, values, {
+      .post(`${BaseApi}/auth/LogIn`, values, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -44,9 +44,11 @@ export default function SigninForm() {
         setLoading(false);
       });
     console.log(response);
-    if (response?.data.message === "success") {
+    if (response?.data.message === "Done") {
+      console.log(response.data);
+      localStorage.setItem("token", response.data.BrearerToken);
       setLoading(false);
-      nav("/home");
+      nav("/");
     }
   };
   const formik = useFormik({

@@ -1,14 +1,14 @@
 import { Box } from "@mui/material";
-import React, { Suspense, useRef } from "react";
-import Navbar from "../../Components/Instructor/Navbar/Navbar";
-import MiniDrawer from "../../Components/Instructor/Drawer/Drawer";
+import React, { useRef } from "react";
+import Navbar from "./Components/Navbar/Navbar";
+import CustomDrawer from "./Components/CustomDrawer/CustomDrawer";
 import { Outlet } from "react-router-dom";
 
 function Layout() {
   const drawerRef = useRef(null);
   return (
     <Box sx={{ pt: "0.5em" }}>
-      <MiniDrawer ref={drawerRef} />
+      <CustomDrawer ref={drawerRef} />
       <Navbar onMenuClick={() => drawerRef.current?.toggleOpenDrawer()} />
       <Box
         sx={{

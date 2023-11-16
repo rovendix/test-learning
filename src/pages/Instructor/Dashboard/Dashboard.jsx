@@ -1,10 +1,10 @@
-import React, { Suspense } from "react";
+import React from "react";
 import { Helmet } from "react-helmet";
-import IndicationCard from "../../../Components/Instructor/IndicationCard/IndicationCard";
+import IndicationCard from "./Components/IndicationCard/IndicationCard";
 import { AttachMoney, Groups, QueryBuilder } from "@mui/icons-material";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
-import WelcomeCard from "../../../Components/Instructor/WelcomeCard/WelcomeCard";
-import NewsCarousel from "../../../Components/Instructor/NewsCarousel/NewsCarousel";
+import WelcomeCard from "./Components/WelcomeCard/WelcomeCard";
+import NewsCarousel from "./Components/NewsCarousel/NewsCarousel";
 function Dashboard() {
   const sliderItems = [
     {

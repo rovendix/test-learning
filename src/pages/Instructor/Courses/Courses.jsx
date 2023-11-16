@@ -1,11 +1,27 @@
-import React from "react";
-import CoursesList from "../../../Components/Instructor/Courses/CoursesList/CoursesList";
+import React, { useEffect, useState } from "react";
+import CoursesList from "./Components/CoursesList/CoursesList";
 import { Box, Button, Typography } from "@mui/material";
 import { Add } from "@mui/icons-material";
-import { useNavigate } from "react-router-dom";
+import NewCourse from "./Components/NewCourse/NewCourse";
+import { BaseApi } from "../../../util/BaseApi";
+import useGetData from "../../../hooks/useGetData";
+import axios from "axios";
 
 function Courses() {
-  const navigate = useNavigate();
+  const [newFormIsShown, setNewFormIsShown] = useState(false);
+  const [courseD, setCourseD] = useState("");
+  const { data, loading, error, setRefetch } = useGetData(
+    BaseApi + "/course/getMyCreatedCourses"
+  );
+  const coursesList = data?.courses;
+  console.log("coursesList: ", coursesList);
+  useEffect(() => {
+    axios
+      .get(BaseApi + "/course/getCourse/654e9f76f9927557102343f6")
+      .then((res) => {
+        console.log("res: ", res.data);
+      });
+  }, []);
   return (
     <Box>
       <Box
@@ -22,12 +38,17 @@ function Courses() {
           variant="contained"
           color="primary"
           startIcon={<Add />}
-          onClick={() => navigate("new")}
+          onClick={() => setNewFormIsShown(true)}
         >
           New Course
         </Button>
       </Box>
-      <CoursesList />
+      <CoursesList setRefetch={setRefetch} items={coursesList} />
+      <NewCourse
+        open={newFormIsShown}
+        setOpen={setNewFormIsShown}
+        setRefetch={setRefetch}
+      />
     </Box>
   );
 }

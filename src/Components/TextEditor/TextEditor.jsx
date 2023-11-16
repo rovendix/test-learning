@@ -16,7 +16,7 @@ const modules = {
       { indent: "+1" },
     ],
     [{ color: [] }, { background: [] }],
-    ["link", "image"],
+    ["link"],
     ["clean"],
   ],
 };
@@ -35,7 +35,6 @@ const formats = [
   "bullet",
   "indent",
   "link",
-  "image",
   "background",
   "color",
 ];
@@ -86,8 +85,11 @@ const Wrapper = styled(Box)(({ theme }) => ({
     {
       color: theme.palette.primary.main,
     },
+  "& .ql-editor.ql-blank::before": {
+    color: theme.palette.text.secondary,
+  },
 }));
-function TextEditor({ sx, value, onChange }) {
+function TextEditor({ id, value, placeholder, onChange, onBlur, sx }) {
   return (
     <Wrapper sx={sx}>
       <ReactQuill
@@ -95,6 +97,9 @@ function TextEditor({ sx, value, onChange }) {
         modules={modules}
         formats={formats}
         onChange={onChange}
+        onBlur={onBlur}
+        id={id}
+        placeholder={placeholder}
       />
     </Wrapper>
   );

@@ -18,7 +18,7 @@ import {
 } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import { Google } from "@mui/icons-material";
-import { siteUrl } from "../../../util/backend";
+import { BaseApi } from "../../../util/BaseApi";
 export default function SignupForm() {
   let nav = useNavigate();
   let [loading, setLoading] = useState(false);
@@ -48,7 +48,7 @@ export default function SignupForm() {
   const handleSignup = async (values) => {
     setLoading(true);
     let { data } = await axios
-      .post(`${siteUrl}/auth/signup`, values, {
+      .post(`${BaseApi}/auth/signup`, values, {
         headers: {
           "Content-Type": "application/json",
         },
